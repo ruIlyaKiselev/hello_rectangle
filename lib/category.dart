@@ -21,6 +21,7 @@ class Category extends StatelessWidget {
         ),
         child: Material(
           child: InkWell(
+            borderRadius: BorderRadius.circular(24),
             onTap: () => {print("new event")},
             child: Container(
                 width: double.infinity,
