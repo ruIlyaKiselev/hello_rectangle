@@ -49,27 +49,34 @@ void main() {
     Category(Icon(Icons.sixty_fps_sharp, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
   ];
 
-  runApp(
-      MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.green,
-                title: Text("Aaaaaaaa"),
-              ),
-              body: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: OrientationBuilder(
-                      builder: (context, orientation) {
-                        return buildCategoryWidget(orientation == Orientation.portrait , _categoryList);
-                      }
-                  )
-              )
-          )
-      )
-  );
+  runApp(HomeScreen(_categoryList));
+}
 
+class HomeScreen extends StatelessWidget {
 
+  late List<Category> _categoryList = [];
+
+  HomeScreen(List<Category> categoryList) {
+    _categoryList = categoryList;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.green,
+              title: Text("Aaaaaaaa"),
+            ),
+            body: OrientationBuilder(
+                builder: (context, orientation) {
+                  return buildCategoryWidget(orientation == Orientation.portrait , _categoryList);
+                }
+            )
+        )
+    );
+  }
 }
 
 Widget buildCategoryWidget(bool portrait, List<Category> _categoryList) {

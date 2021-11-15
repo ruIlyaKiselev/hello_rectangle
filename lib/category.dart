@@ -17,7 +17,7 @@ class Category extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
-          color: Colors.redAccent,
+          color: Colors.greenAccent,
         ),
         child: Material(
           child: InkWell(
