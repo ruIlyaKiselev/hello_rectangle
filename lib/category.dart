@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hello_rectangle/details.dart';
 
 class Category extends StatelessWidget {
 
   late Icon _icon;
   late Text _text;
+
+  Icon get icon => _icon;
+  Text get text => _text;
 
   Category(Icon icon, Text text, {Key? key}) : super(key: key) {
     _icon = icon;
@@ -22,7 +26,15 @@ class Category extends StatelessWidget {
         child: Material(
           child: InkWell(
             borderRadius: BorderRadius.circular(24),
-            onTap: () => {print("new event")},
+            onTap: () => {
+              print("new event"),
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailsWidget(this)
+                )
+              )
+            },
             child: Container(
                 width: double.infinity,
                 height: 100,
