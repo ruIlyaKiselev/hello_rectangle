@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:hello_rectangle/category.dart';
 
@@ -58,13 +59,31 @@ void main() {
               ),
               body: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: ListView.builder(
-                    itemBuilder: (BuildContext context, int index ) => _categoryList[index],
-                    itemCount: _categoryList.length,
+                  child: OrientationBuilder(
+                      builder: (context, orientation) {
+                        return buildCategoryWidget(orientation == Orientation.portrait , _categoryList);
+                      }
                   )
               )
           )
       )
   );
+
+
+}
+
+Widget buildCategoryWidget(bool portrait, List<Category> _categoryList) {
+  if (portrait) {
+    return ListView.builder(
+      itemBuilder: (BuildContext context, int index ) => _categoryList[index],
+      itemCount: _categoryList.length,
+    );
+  } else {
+    return GridView.count(
+      crossAxisCount: 2,
+      childAspectRatio: 3.0,
+      children: _categoryList,
+    );
+  }
 }
 

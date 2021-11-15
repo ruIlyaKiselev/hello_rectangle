@@ -13,7 +13,7 @@ class Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.all(10),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
