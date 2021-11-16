@@ -1,27 +1,44 @@
-
 import 'package:flutter/material.dart';
 import 'package:hello_rectangle/category.dart';
 
-class HelloRectangle extends StatelessWidget {
+class HelloRectangle extends StatefulWidget {
+
+  List<Category> categoryList;
+
+  HelloRectangle({Key? key, required this.categoryList}) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
-    return Center(
-      child: Container(
-        color: Colors.redAccent,
-        height: 400,
-        width: 300,
-        padding: const EdgeInsets.all(20),
-        child: const Center(
-          child: Text(
-            "AAAAAAAAAAAAAAA",
-            style: TextStyle(
-                fontSize: 40
+  State createState() => _HelloRectangleState();
+}
+
+class _HelloRectangleState extends State<HelloRectangle>{
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.green,
+              title: Text("Aaaaaaaa"),
             ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
+            body: OrientationBuilder(
+                builder: (context, orientation) {
+                  if (orientation == Orientation.portrait) {
+                    return ListView.builder(
+                      itemBuilder: (BuildContext context, int index ) => widget.categoryList[index],
+                      itemCount: widget.categoryList.length,
+                    );
+                  } else {
+                    return GridView.count(
+                      crossAxisCount: 2,
+                      childAspectRatio: 3.0,
+                      children: widget.categoryList,
+                    );
+                  }
+                }
+            )
+        )
     );
   }
 }
@@ -29,27 +46,27 @@ class HelloRectangle extends StatelessWidget {
 void main() {
 
   List<Category> _categoryList = [
-    Category(Icon(Icons.add, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.access_alarm_sharp, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.home, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.search, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.add_alarm, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.ac_unit, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.thirty_fps_select_sharp, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.three_p_outlined, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.sixty_fps_sharp, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.add, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.access_alarm_sharp, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.home, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.search, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.add_alarm, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.ac_unit, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.thirty_fps_select_sharp, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.three_p_outlined, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
-    Category(Icon(Icons.sixty_fps_sharp, size: 40), Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.add, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.access_alarm_sharp, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.home, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.search, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.add_alarm, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.ac_unit, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.thirty_fps_select_sharp, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.three_p_outlined, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.sixty_fps_sharp, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.add, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.access_alarm_sharp, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.home, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.search, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.add_alarm, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.ac_unit, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.thirty_fps_select_sharp, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.three_p_outlined, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
+    Category(icon: Icon(Icons.sixty_fps_sharp, size: 40), text: Text("aaaaa", style: TextStyle(fontSize: 40),)),
   ];
 
-  runApp(HomeScreen(_categoryList));
+  runApp(HelloRectangle(categoryList: _categoryList));
 }
 
 class HomeScreen extends StatelessWidget {
